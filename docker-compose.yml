@@ -1,0 +1,16 @@
+services:
+  ms-analitica:
+    build: .
+    container_name: ms-analitica
+    restart: unless-stopped
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka1:29092,kafka2:29092,kafka3:29092
+      AWS_REGION: us-east-1
+      S3_BUCKET_NAME: nombre-de-su-bucket
+      S3_HABILITADO: ${S3_HABILITADO:-true}
+      JAVA_TOOL_OPTIONS: "-Xmx256m"
+
+networks:
+  default:
+    name: ticketfilms-net
+    external: true
